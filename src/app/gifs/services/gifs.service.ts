@@ -18,7 +18,7 @@ export class GifsService {
 
   get tagsHistory(){
     return [...this._tagsHistory];
-    // para crear una copia de los valores de tags (por seguridad)
+    // [... ***] - Spret: para crear una copia de los valores de tags (por seguridad)
   }
 
   private organizarHistirial( tag : string){
@@ -31,6 +31,7 @@ export class GifsService {
 
     // inserta el nuevo valor
     this._tagsHistory.unshift( tag );
+
     // me quedo con los diez primeros valores del arreglo
     this._tagsHistory = this._tagsHistory.splice(0,10);
 
@@ -66,11 +67,10 @@ export class GifsService {
       .set('api_key', this.apiKey)
       .set('limit', '10')
       .set('q', tag);
+
     this.http.get<SearchResponse>(`${ this.serviceURL }/search`,{ params })
       .subscribe( resp => {
-
         this.gifList= resp.data;
-
         console.log({gifs: this.gifList})
         // console.log(resp);
       });

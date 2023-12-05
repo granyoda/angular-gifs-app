@@ -15,14 +15,15 @@ import { GifsService } from '../../services/gifs.service';
       >
   `
 })
-// #txtTagInput: es un referencia local que solo funciona en el template
+// #txtTagInput: es un referencia local que solo funciona en el template (en la vista)
 
 export class SearchBoxComponent {
 
   @ViewChild('txtTagInput')
+  //Si no se pone "!" despues del tagInput te puede marcar error porque deduce que puede que no exista
   public tagInput!: ElementRef<HTMLInputElement>;
   // ViewChild toma una referencia local
-  // ViewChildren regresa todas las referencias lcales en un arreglo
+  // ViewChildren regresa todas las referencias locales en un arreglo
 
   constructor( private gifsService: GifsService ) { }
 
